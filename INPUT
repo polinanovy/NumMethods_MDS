@@ -2,3 +2,7 @@
 0.5d0  #L_y
 100    #N
 100    #M
+0.5d0  #sigma
+25     #temperature along the axis
+0.0d0  #flux along the different axis
+0,0d0  #initial temperature
