@@ -21,7 +21,7 @@ read(1, *) T_0
 read(1, *) D
 end subroutine InitializeParameters
 
-subroutine InitializeGrid(N, M, D, L_x, L_y, x, dx, y, dy, dt)
+subroutine InitializeGrid(N, M, D, L_x, L_y, x, dx, y, dy, dt)   !dt = ???
 ! Subroutine for initialising the grid
 real(8) :: L_x, L_y, D
 integer :: N, M, i
@@ -38,5 +38,17 @@ do i = 1, M-2
 	y(i) = y(i-1) + dy
 enddo
 end subroutine InitializeGrid
+
+
+subroutine SetIC(N, M, T_0, T_old)
+! Subroutine for setting the initial condition
+integer :: N, M, i, j
+real(8) :: T_old(0:N-1,0:M-1), T_0
+do i = 0, N-1
+    do j = 0, M-1
+    	T_old(i,j) = T_0
+	enddo
+enddo
+end subroutine SetIC
 
 end module
