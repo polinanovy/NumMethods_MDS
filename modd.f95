@@ -40,15 +40,28 @@ enddo
 end subroutine InitializeGrid
 
 
-subroutine SetIC(N, M, T_0, T_old)
+subroutine SetIC(N, M, T_0, T)
 ! Subroutine for setting the initial condition
 integer :: N, M, i, j
-real(8) :: T_old(0:N-1,0:M-1), T_0
+real(8) :: T(0:N-1,0:M-1), T_0
 do i = 0, N-1
     do j = 0, M-1
-    	T_old(i,j) = T_0
+    	T(i,j) = T_0
 	enddo
 enddo
 end subroutine SetIC
+
+subroutine SetBC(N, M, T_x, dT_y, T)   !T(x,L_y) = ???
+!Subroutine for setting the boundary condition
+integer :: N, M, i
+real(8) :: T_x, dT_y
+real(8) :: T(0:N-1,0:M-1)
+do i = 0, M-1
+    T(N-1,i) = T_x
+enddo
+do i = 0, N-1
+    T(i,M-1) = 
+enddo
+end subroutine SetBC
 
 end module
