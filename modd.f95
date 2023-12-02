@@ -51,17 +51,34 @@ do i = 0, N-1
 enddo
 end subroutine SetIC
 
-subroutine SetBC(N, M, T_x, dT_y, T)   !T(x,L_y) = ???
+subroutine SetBC(N, M, T_x, T_y, T)   !T(x,L_y) = ???
 !Subroutine for setting the boundary condition
 integer :: N, M, i
-real(8) :: T_x, dT_y
+real(8) :: T_x, T_y
 real(8) :: T(0:N-1,0:M-1)
 do i = 0, M-1
+    T(0,i)   = T_x
     T(N-1,i) = T_x
 enddo
 do i = 0, N-1
-    T(i,M-1) = 
+    T(i,0)   = T_y
+    T(i,M-1) = T_y
 enddo
 end subroutine SetBC
+
+subroutine Step()
+
+end subroutine Step
+
+subroutine UpdateIC()
+!Subroutine for updating the initial condition
+
+end subroutine UpdateIC
+
+subroutine SaveData()
+!Subroutine to save data
+
+end subroutine SaveData
+
 
 end module
