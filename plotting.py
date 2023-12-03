@@ -17,21 +17,22 @@ with open('RESULT') as table:
 	M= int(line1.split()[1])
 	dt = float(line1.split()[2])
 	t_stop = float(line1.split()[3])
-	u = np.empty([N, M])
+	u = np.empty([M, N])
 	for index, line in enumerate(table):
 		u[index,:] = line.split()
 
 mmax = u.max()
 mmin = u.min()
 plt.figure(figsize=(8,6))
-#plt.title(r'$\Delta P$'+'\n'+fr'$(e = {round(ecc0, 2)},~d = {round(d, 2)}$'+r'$R_E$, '+fr'$A$/$C = {round(AC, 2)}$, $B$/$C = {round(BC, 2)})$', fontsize = 18)
-#plt.xlabel(r'$P_0$, ч')
-#plt.ylabel(r'$\varphi_0,$ град')
+plt.title(r'$T~(t_{stop}=$'+f'${t_stop}~$s, '+r'$~x,~y)$')
+plt.xlabel(r'$x,$ m')
+plt.ylabel(r'$y,$ m')
 #plt.gca().xaxis.set_major_locator(MultipleLocator(10))
 #plt.gca().xaxis.set_major_formatter('{x:.0f}')
-cax = plt.imshow(u, interpolation = 'none', origin = 'lower', aspect = 'auto', extent = (0,0.5,0,0.5), cmap = 'Reds')
+cax = plt.imshow(u, interpolation = 'none', origin = 'lower', aspect = 'equal', extent = (0,0.5,0,0.5), cmap = 'Reds')
 #myticks = [int(round(mmin, -1) + 10 * i) for i in range(int((mmax - mmin) // 10 + 1))]
 plt.colorbar(cax)#, ticks=myticks).ax.set_yticklabels(myticks)
+plt.tight_layout()
 plt.savefig('map.png', format = 'png', dpi=600)
 
 
